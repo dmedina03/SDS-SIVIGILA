@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using SIVIGILA.Commons.DTOs.PerfilVigenciaDTOs;
 using SIVIGILA.Commons.DTOs.Search;
+using SIVIGILA.Commons.DTOs.TablaCostosDTOs;
 using SIVIGILA.Commons.DTOs.TipoUbicacionDto;
 using SIVIGILA.Commons.ErrorHandling.CustomExceptions;
 using SIVIGILA.Commons.Utils.Pagging;
@@ -107,5 +108,10 @@ namespace SIVIGILA.Service.PerfilVigenciaService
         {
             return await _perfilVigenciaRepository.GetByParamsAsync(Dto);
         }
+        public async Task<IEnumerable<PerfilVigenciaTablaCostoDTO>> GetPerfilesByIdVigencia(int Id)
+        {
+            return await _perfilVigenciaRepository.PerfilesByIdVigencia(Id);
+        }
+
     }
 }

@@ -75,6 +75,7 @@ namespace SIVIGILA.Models.Context
         public virtual DbSet<Postgrado> Postgrados { get; set; }
         public virtual DbSet<Profesion> Profesions { get; set; }
         public virtual DbSet<TerminalesPortuario> TerminalesPortuarios { get; set; }
+        public virtual DbSet<TablaCostos> TablaCostos { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SIVIGILA.Commons.DTOs.PerfilVigenciaDTOs;
 using SIVIGILA.Commons.DTOs.Search;
+using SIVIGILA.Commons.DTOs.TablaCostosDTOs;
 using SIVIGILA.Commons.Utils.Pagging;
 using SIVIGILA.Models.Context;
 using SIVIGILA.Models.Entities;
@@ -39,5 +40,17 @@ namespace SIVIGILA.Repository
 
             return data;
         }
+
+
+        public async Task<IEnumerable<PerfilVigenciaTablaCostoDTO>> PerfilesByIdVigencia(int Id)
+        {
+            var data = Entity.Where(x => x.VigenciaID == Id).Select(x => new PerfilVigenciaTablaCostoDTO
+            {
+                Perfil_ID = x.PerfilID,
+                NombrePerfil = x.Perfil.NombrePerfil
+            }).ToList();
+            return data;
+        }
+
     }
 }

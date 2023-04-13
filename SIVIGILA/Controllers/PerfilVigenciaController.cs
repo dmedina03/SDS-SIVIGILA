@@ -38,7 +38,7 @@ namespace SIVIGILA.Controllers
         {
             return Ok(GetDefaultResponse(await _perfilVigenciaService.GetByParamsAsync(Dto)));
         }
-
+        
         public ResponseDTO<T> GetDefaultResponse<T>(T dato)
         {
             return new ResponseDTO<T>

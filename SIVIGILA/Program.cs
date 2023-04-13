@@ -28,6 +28,7 @@ using SIVIGILA.Service.DpSexoService;
 using SIVIGILA.Service.DpPresenEtnicaServices;
 using SIVIGILA.Service.DpCondiDiscapaService;
 using SIVIGILA.Service.DpOrientSexualService;
+using SIVIGILA.Service.TablaCostosService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -162,6 +163,9 @@ builder.Services.AddScoped<IDpCondiDiscapaService, DpCondiDiscapaService>();
 //DpCondiDiscapa GroupService
 builder.Services.AddScoped<IDpOrientSexualRepository, DpOrientSexualRepository>();
 builder.Services.AddScoped<IDpOrientSexualService, DpOrientSexualService>();
+//TablaCostos GroupService
+builder.Services.AddScoped<ITablaCostosRepository, TablaCostosRepository>();
+builder.Services.AddScoped<ITablaCostosService, TablaCostosService>();
 
 var app = builder.Build();
 

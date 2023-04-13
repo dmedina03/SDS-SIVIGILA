@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.IdentityModel.Tokens;
 using SIVIGILA.Commons.DTOs.PerfilVigenciaDTOs;
 using SIVIGILA.Repository;
 using SIVIGILA.Repository.Interface;
@@ -46,9 +47,15 @@ namespace SIVIGILA.Service.PerfilVigenciaService.Validation
                 .MustAsync(async (x, Id, ct) => await _perfilRepository.ExistGenericAsync(x => x.Id == Id))
                 .WithMessage("No existe un perfil con el ID suministrado");
 
-                //RuleForEach(x => x.ProfesionVigencia)
-                //.SetValidator(x => new ProfesionVigenciaValidator(_profesionRepository, _postgradoRepository, x));
+                RuleFor(x => x.VigenciaID)
+                .MustAsync(async (c, Id, ct) => !await _perfilVigenciaRepository
+                .ExistGenericAsync(x => x.VigenciaID == Id && x.PerfilVigenciaID != c.PerfilVigenciaID))
+                .WithMessage("Ya existe una parametrización con esa vigencia");
 
+                 RuleFor(x => x.VigenciaID)
+                .MustAsync(async (Id, ct) => await PresupuestoVigencia(Id))
+                .WithMessage("El presupuesto de la vigencia no es Inicial");
+                
                 RuleForEach(x => x.ProfesionVigencia)
                 .ChildRules(profesion =>
                 {
@@ -70,6 +77,17 @@ namespace SIVIGILA.Service.PerfilVigenciaService.Validation
                 });
                     
             });
+
+        }
+
+        private async Task<bool> PresupuestoVigencia(int id)
+        {
+            var presupuesto = await _vigenciaRepository.GenericGetAsync(x => x, x => x.VigenciaID == id);
+            if (presupuesto.Presupuesto.ToLower().Trim()=="inicial")
+            {
+                return true;
+            }
+            return false;
         }
 
     }
