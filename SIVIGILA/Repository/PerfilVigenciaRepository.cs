@@ -48,7 +48,7 @@ namespace SIVIGILA.Repository
             {
                 Perfil_ID = x.PerfilID,
                 NombrePerfil = x.Perfil.NombrePerfil
-            }).ToList();
+            }).ToList().DistinctBy(x => x.Perfil_ID);
             return data;
         }
 
