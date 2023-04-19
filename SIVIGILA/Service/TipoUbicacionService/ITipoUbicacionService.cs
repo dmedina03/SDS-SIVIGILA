@@ -10,8 +10,8 @@ namespace SIVIGILA.Service.TipoUbicacionService
     public interface ITipoUbicacionService : ICreateOrUpdateRangeService<TipoUbicacionDto>,
                                              ICreateService<TipoUbicacionDto>,
                                              IUpdateService<TipoUbicacionDto>,
-                                             IGetService<TipoUbicacionGetDTO, TipoUbicacionGetDTO>
+                                             IGetService<TipoUbicacionGetDTO, TipoUbicacionGetDTO>,
+                                             IServiceSearch<TipoUbicacionDto, SearchTipoUbicacionDTO>
     {
-        public Task<DataCollection<TipoUbicacionDto>> GetByParamsAsync(SearchTipoUbicacionDTO Dto);
     }
 }
