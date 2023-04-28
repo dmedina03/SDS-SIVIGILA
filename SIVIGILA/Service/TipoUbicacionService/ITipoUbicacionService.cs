@@ -13,5 +13,6 @@ namespace SIVIGILA.Service.TipoUbicacionService
                                              IGetService<TipoUbicacionGetDTO, TipoUbicacionGetDTO>,
                                              IServiceSearch<TipoUbicacionDto, SearchTipoUbicacionDTO>
     {
+        
     }
 }
